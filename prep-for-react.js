@@ -50,12 +50,12 @@ console.log(producto2.leyEtiquetado());
  */
 
 // FUNCIONES
-
+/* 
 const productos = [
     {id: 1, nombre: 'Coca Cola', precio:600},
     {id: 2, nombre: 'Pepsi', precio:580},
     {id: 3, nombre: 'Manaos', precio:350}
-];
+]; */
 // FUNCION TRADICIONAL
 // element se llama la variable de iteracion, puede tener cualquier nombre
 /* function buscarProducto(nombre) {
@@ -68,7 +68,7 @@ const productos = [
     return producto;
 } */
 // FUNCION FLECHA
-const buscarProducto = (nombre) => {
+/* const buscarProducto = (nombre) => {
     return productos.find(element => element.nombre == nombre); 
     //some devuelve true o false nada mas
     //find campara c/u de los elementos hasta encontrar uno que coincida y asi devovlerlo.
@@ -81,8 +81,56 @@ console.log(producto);
 
 const contarManzanas = () => {
     return 7;
-}
+} */
 
 /* let manzanas = contarManzanas;  */// de esta manera, por no declarar la funcion con sus parentecis, el log devuelve la funcion entera.
-let manzanas = contarManzanas();
-console.log(manzanas);
+/* let manzanas = contarManzanas();
+console.log(manzanas); */
+
+
+
+
+// VALIDACIPON DE DATOS DE UN FORMULARIO
+
+const dbUsuarios = [
+    {id:1, nombre:'Javier Veron', usuario:'javierv', pass:'1234'},
+    {id:2, nombre:'Nicolas Gimenez', usuario:'nicog', pass:'2345'},
+    {id:3, nombre:'Laila Gonzalez', usuario:'lailag', pass:'3456'}
+];
+
+const validarFormulario = () => {
+    let usuario = document.getElementById('usuario').value;
+    let usuarioError = document.getElementById('usuarioError');
+    let contrasena = document.getElementById('contrasena').value;
+    let contrasenaError = document.getElementById('contrasenaError');
+
+    if(usuario == '') {
+        usuarioError.innerHTML = 'Username required!';
+        usuarioError.classList.add('text-danger');
+        return false // para que si no cumple con la condicion, retorne algo opuesto que si cumpla.
+    } else {
+        usuarioError.innerHTML = '';
+    }
+    
+    if(contrasena == '') {
+        contrasenaError.innerHTML = 'Password required!';
+        contrasenaError.classList.add('text-danger');
+        return false
+    } else {
+        contrasenaError.innerHTML = '';
+    }
+
+    if (validarUsuario(usuario, contrasena)){
+        location.href = 'page-for-example.html';
+    } else {
+        document.getElementById('resultado').innerHTML = `<div class="alert alert-danger" role="alert">
+            Error! User not identify.
+        </div>`
+    }
+}
+
+const validarUsuario = (user, pass) => {
+    return dbUsuarios.some(usuario => (usuario.usuario == user) && (usuario.pass = pass));
+}
+
+document.getElementById('botonEnviar').addEventListener('click', validarFormulario);
