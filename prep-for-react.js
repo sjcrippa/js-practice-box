@@ -1,4 +1,4 @@
-// Variables
+/* // Variables
 let valor = 10;
 console.log(typeof(valor));
 let texto = 'El valor definido es: ' + valor;
@@ -47,4 +47,42 @@ console.log(producto1.nombreProducto);
 console.log(producto1.leyEtiquetado());
 console.log(producto2.nombreProducto);
 console.log(producto2.leyEtiquetado());
-console.log(producto2.leyEtiquetado());
+ */
+
+// FUNCIONES
+
+const productos = [
+    {id: 1, nombre: 'Coca Cola', precio:600},
+    {id: 2, nombre: 'Pepsi', precio:580},
+    {id: 3, nombre: 'Manaos', precio:350}
+];
+// FUNCION TRADICIONAL
+// element se llama la variable de iteracion, puede tener cualquier nombre
+/* function buscarProducto(nombre) {
+    let producto = 0;
+    productos.forEach(element => {
+        if (element.nombre == nombre) {
+            producto = element;
+        }
+    });
+    return producto;
+} */
+// FUNCION FLECHA
+const buscarProducto = (nombre) => {
+    return productos.find(element => element.nombre == nombre); 
+    //some devuelve true o false nada mas
+    //find campara c/u de los elementos hasta encontrar uno que coincida y asi devovlerlo.
+}
+
+let producto = buscarProducto('Coca Cola');
+console.log(producto);
+
+// EJEMPLO MANZANAS
+
+const contarManzanas = () => {
+    return 7;
+}
+
+/* let manzanas = contarManzanas;  */// de esta manera, por no declarar la funcion con sus parentecis, el log devuelve la funcion entera.
+let manzanas = contarManzanas();
+console.log(manzanas);
